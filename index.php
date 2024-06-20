@@ -49,6 +49,14 @@ $mysqli->close();
     .booksy-widget-container-dialog .booksy-business-link {
       background-image: none !important;
     }
+
+
+    .custom-modal-height {
+    height: 80vh; /* Define a altura do modal */
+    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo exceder a altura */
+}
+
+
   </style>
 
 </head>
@@ -97,7 +105,7 @@ $mysqli->close();
    <!-- Estrutura do Modal 1 -->
    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content custom-modal-height">
         <div class="modal-header">
           <h5 class="modal-title" id="modal1Label">Escolha um Barbeiro</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -107,7 +115,8 @@ $mysqli->close();
             <div class="row">
               <?php foreach ($barbers as $barber): ?>
                 <div class="col-md-4 text-center">
-                  <img src="colaboradores/<?php echo htmlspecialchars($barber['photo']); ?>" alt="<?php echo htmlspecialchars($barber['name']); ?>" class="img-fluid rounded-circle mb-2">
+                  <img src="colaboradores/<?php echo htmlspecialchars($barber['photo']); ?>" 
+                  alt="<?php echo htmlspecialchars($barber['name']); ?>" class="">
                   <h5><?php echo htmlspecialchars($barber['name']); ?></h5>
                   <button class="btn btn-primary select-barber" data-name="<?php echo htmlspecialchars($barber['name']); ?>" data-photo="colaboradores/<?php echo htmlspecialchars($barber['photo']); ?>">Select</button>
                 </div>
@@ -506,6 +515,7 @@ $mysqli->close();
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
+    
      document.querySelectorAll('.select-barber').forEach(button => {
       button.addEventListener('click', function () {
         const name = this.getAttribute('data-name');
